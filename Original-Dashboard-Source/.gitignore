@@ -1,0 +1,5 @@
+node_modules
+.next
+keyscope-agent/target
+*.tsbuildinfo
+next-env.d.ts

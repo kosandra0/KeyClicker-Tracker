@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark light" />
+  <title>KeyClick Tracker</title>
+  <link rel="icon" href="/ui/logo.png" type="image/png" />
+  <link rel="stylesheet" href="/ui/styles.css" />
+  <script>
+    /* Paint the saved theme before anything renders so there is no flash. */
+    try {
+      var s = JSON.parse(localStorage.getItem('kc_prefs') || '{}');
+      if (s.vars) { var r = document.documentElement; for (var k in s.vars) r.style.setProperty(k, s.vars[k]); r.classList.toggle('light', s.mode === 'light'); }
+      if (s.font) document.documentElement.style.setProperty('--font', s.font);
+      if (s.anim === false) document.documentElement.classList.add('no-anim');
+    } catch (e) {}
+    if (window.__KC_NATIVE) document.documentElement.classList.add('native');
+  </script>
+</head>
+<body>
+  <div class="window" id="window">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand-row" data-drag>
+        <img class="brand-logo" src="/ui/logo.png" alt="" width="34" height="34" />
+        <div class="brand-copy"><div class="brand-name">KeyClick Tracker</div><div class="brand-sub">Quiet, private input stats</div></div>
+      </div>
+      <nav class="nav-list" id="nav" aria-label="Main navigation"><span class="nav-ind" id="nav-ind"></span></nav>
+      <div class="sidebar-bottom">
+        <div class="privacy-note"><span class="privacy-dot"></span><span class="nav-label">Stays on this computer</span></div>
+        <div class="sidebar-version"><span class="nav-label" id="side-name">KeyClick</span><span class="version-pill" id="side-version">v2.0</span></div>
+      </div>
+    </aside>
+
+    <section class="main-area">
+      <header class="titlebar" id="titlebar" data-drag>
+        <button class="icon-btn" id="sidebar-toggle" title="Show or hide the sidebar (Ctrl+B)" aria-label="Toggle sidebar"></button>
+        <div class="crumb"><span class="crumb-title" id="crumb-title">Overview</span></div>
+        <div class="spacer"></div>
+        <div class="xp-chip" id="xp-chip" data-tip="">
+          <span class="xp-lv">Lv <b id="xp-level" data-odo="xp.level"></b></span>
+          <span class="xp-meta"><span class="xp-title" id="xp-title">Newcomer</span><span class="xp-bar"><i id="xp-fill"></i></span></span>
+        </div>
+        <div class="live-chip" id="live-chip" data-tip="Your typing speed and click rate over the last few seconds">
+          <span class="live-metric"><b><span data-odo="live.wpm" data-conv="w"></span></b><i data-unit="w">WPM</i></span>
+          <span class="live-sep"></span>
+          <span class="live-metric"><b><span data-odo="live.cpm" data-conv="c"></span></b><i data-unit="c">CPM</i></span>
+        </div>
+        <div class="status-pill" id="status-pill"><span class="status-dot"></span><span id="status-text">Connecting…</span></div>
+        <button class="pause-top" id="pause-top"><span id="pause-icon"></span><span id="pause-label">Pause</span></button>
+        <div class="traffic" id="traffic" aria-label="Window controls">
+          <button class="tl tl-min" id="tl-min" title="Minimize" aria-label="Minimize"><svg viewBox="0 0 12 12"><path d="M2.5 6h7"/></svg></button>
+          <button class="tl tl-max" id="tl-max" title="Maximize" aria-label="Maximize"><svg viewBox="0 0 12 12"><path d="M6 2.5v7M2.5 6h7"/></svg></button>
+          <button class="tl tl-close" id="tl-close" title="Close" aria-label="Close"><svg viewBox="0 0 12 12"><path d="M3 3l6 6M9 3l-6 6"/></svg></button>
+        </div>
+      </header>
+      <main class="content-area" id="content" tabindex="-1"></main>
+    </section>
+
+    <div class="toast-stack" id="toasts" aria-live="polite"></div>
+    <div class="modal-root" id="modal-root"></div>
+  </div>
+
+  <div class="grips" id="grips" aria-hidden="true">
+    <i data-edge="n"></i><i data-edge="s"></i><i data-edge="w"></i><i data-edge="e"></i>
+    <i data-edge="nw"></i><i data-edge="ne"></i><i data-edge="sw"></i><i data-edge="se"></i>
+  </div>
+
+  <div class="tip" id="tip" role="tooltip"></div>
+  <script src="/ui/units.js"></script>
+  <script src="/ui/themes.js"></script>
+  <script src="/ui/changelog.js"></script>
+  <script src="/ui/odometer.js"></script>
+  <script src="/ui/core.js"></script>
+  <script src="/ui/pages.js"></script>
+  <script src="/ui/app.js"></script>
+</body>
+</html>

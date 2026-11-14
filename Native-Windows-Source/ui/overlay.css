@@ -1,0 +1,24 @@
+:root{--font:"Segoe UI Variable Text","Segoe UI",system-ui,sans-serif;--bg:#16171b;--panel:#1f2026;--ink:#f0f0f1;--muted:#92949e;--line:#2e3038;--accent:#91a8e6;--accent2:#a99be4}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;overflow:hidden;background:var(--bg);color:var(--ink);font-family:var(--font);-webkit-font-smoothing:antialiased;user-select:none}
+.ov{position:fixed;inset:0;display:flex;align-items:center;justify-content:space-evenly;gap:2vw;padding:0 3vw;
+  background:linear-gradient(160deg,color-mix(in srgb,var(--panel) 96%,var(--accent)),var(--bg));
+  box-shadow:inset 0 0 0 1px var(--line);transition:box-shadow .45s cubic-bezier(.22,.8,.24,1);cursor:grab}
+.ov:hover{box-shadow:inset 0 0 0 1.5px color-mix(in srgb,var(--accent) 70%,var(--line)),inset 0 0 22px color-mix(in srgb,var(--accent) 24%,transparent)}
+.m{display:flex;flex-direction:column;align-items:center;min-width:0}
+.num{display:flex;font-size:min(34vh,15vw);font-weight:620;letter-spacing:-.04em;line-height:1;--lh:1.1em}
+.m i{font-style:normal;font-size:min(13vh,5.4vw);letter-spacing:.14em;color:var(--muted);margin-top:.3em;font-weight:650}
+.sep{width:1px;height:46%;background:var(--line)}
+.odo{display:inline-flex;height:var(--lh);line-height:var(--lh);font-variant-numeric:lining-nums tabular-nums;white-space:pre}
+.od{display:inline-block;height:var(--lh);overflow:hidden;text-align:center;min-width:.56em;max-width:1em;position:relative;transition:max-width .4s,opacity .4s}
+.od-enter{max-width:0;opacity:0;min-width:0}
+.od-strip{display:block;transition:transform .5s cubic-bezier(.2,.85,.25,1)}
+.od-strip>span{display:block;height:var(--lh);line-height:var(--lh)}
+.od-sep{display:inline-block;height:var(--lh);opacity:.7}
+.x{position:absolute;top:6px;right:8px;width:20px;height:20px;border:0;border-radius:50%;padding:0;background:#ff5f57;display:grid;place-items:center;opacity:0;transform:scale(.6);transition:opacity .25s,transform .25s cubic-bezier(.22,.8,.24,1);cursor:pointer}
+.x svg{width:9px;height:9px;fill:none;stroke:rgba(0,0,0,.6);stroke-width:1.8;stroke-linecap:round}
+.ov:hover .x{opacity:1;transform:none}
+.x:hover{filter:brightness(1.1)}
+.grip{position:absolute;right:0;bottom:0;width:22px;height:22px;cursor:nwse-resize;opacity:0;transition:opacity .25s}
+.grip::after{content:"";position:absolute;right:7px;bottom:7px;width:8px;height:8px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);border-radius:0 0 3px 0}
+.ov:hover .grip{opacity:.8}

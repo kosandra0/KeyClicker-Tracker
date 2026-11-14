@@ -1,0 +1,20 @@
+[package]
+name = "keyscope-agent"
+version = "1.0.0"
+edition = "2021"
+description = "KeyScope native Windows input counter (global keyboard/mouse hooks, aggregate counts only)"
+
+[dependencies]
+windows-sys = { version = "0.59", features = [
+  "Win32_Foundation",
+  "Win32_System_Console",
+  "Win32_System_LibraryLoader",
+  "Win32_UI_WindowsAndMessaging",
+] }
+ureq = { version = "2", features = ["json"] }
+serde_json = "1"
+
+[profile.release]
+opt-level = "s"
+lto = true
+strip = true

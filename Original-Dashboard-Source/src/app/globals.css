@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --bg: #f4f2ee;
+  --side: #efece7;
+  --card: #fdfcfa;
+  --ink: #24252b;
+  --muted: #80828b;
+  --line: #e6e2db;
+  --accent: #6f86c4;
+  --accent-soft: #e8ecf7;
+  --lav: #a897dc;
+  --key: #f0ede7;
+  --good: #4f9d84;
+  --warn: #c58a3c;
+  --radius: 18px;
+  color-scheme: light;
+}
+
+.dark {
+  --bg: #16171b;
+  --side: #1b1c21;
+  --card: #1f2026;
+  --ink: #ecebe8;
+  --muted: #8d8f99;
+  --line: #2c2d35;
+  --accent: #8aa0dd;
+  --accent-soft: #2a3045;
+  --lav: #b6a8ea;
+  --key: #2a2b33;
+  --good: #66b99f;
+  --warn: #d9a050;
+  color-scheme: dark;
+}
+
+[data-radius="compact"] {
+  --radius: 8px;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-side: var(--side);
+  --color-card: var(--card);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-lav: var(--lav);
+  --color-key: var(--key);
+  --color-good: var(--good);
+  --color-warn: var(--warn);
+  --font-sans: Inter, "Segoe UI Variable", "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--line);
+  border-radius: 10px;
+  border: 2px solid var(--bg);
+}
+
+@keyframes ks-pulse {
+  0% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--good) 55%, transparent); }
+  70% { box-shadow: 0 0 0 8px transparent; }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
+.ks-pulse {
+  animation: ks-pulse 2s infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ks-pulse { animation: none; }
+}

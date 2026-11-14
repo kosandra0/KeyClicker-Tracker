@@ -1,0 +1,12 @@
+# Build outputs and portable toolchain (never committed)
+*.exe
+_tools/
+.playwright-mcp/
+devurl.txt
+*.log
+# Dependencies and secrets
+node_modules/
+.env
+.env.*
+*.pem
+*.key

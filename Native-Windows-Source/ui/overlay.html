@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KeyClick Tracker Live</title>
+  <link rel="stylesheet" href="/ui/overlay.css" />
+  <script>
+    /* same origin as the main window, so the saved theme and font are shared */
+    try {
+      var s = JSON.parse(localStorage.getItem('kc_prefs') || '{}'), r = document.documentElement;
+      if (s.vars) for (var k in s.vars) r.style.setProperty(k, s.vars[k]);
+      if (s.font) r.style.setProperty('--font', s.font);
+    } catch (e) {}
+  </script>
+</head>
+<body>
+  <div class="ov" id="ov">
+    <div class="m"><span class="num" id="n-w"></span><i id="u-w">WPM</i></div>
+    <div class="sep"></div>
+    <div class="m"><span class="num" id="n-c"></span><i id="u-c">CPM</i></div>
+    <button class="x" id="x" title="Close" aria-label="Close live box"><svg viewBox="0 0 12 12"><path d="M3 3l6 6M9 3l-6 6"/></svg></button>
+    <span class="grip" id="grip" title="Drag to resize"></span>
+  </div>
+  <script src="/ui/units.js"></script>
+  <script src="/ui/odometer.js"></script>
+  <script src="/ui/overlay.js"></script>
+</body>
+</html>
